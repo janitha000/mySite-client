@@ -1,10 +1,13 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function Header() {
+import { store } from '../Store/Store'
 
+function Header() {
+    const {state } = useContext(store);
+    
     return (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
@@ -21,6 +24,9 @@ function Header() {
             </LinkContainer>
             <LinkContainer to="/login">
               <NavItem>Login</NavItem>
+            </LinkContainer>
+            <LinkContainer to="/login">
+              <NavItem>{state.user.name}</NavItem>
             </LinkContainer>
           </Nav>
         </Navbar.Collapse>

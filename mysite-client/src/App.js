@@ -8,16 +8,18 @@ import Login from './Auth/Login/Login'
 import Logout from './Auth/Logout'
 import SignUp from './Auth/Signup'
 
+
+
 function App() {
   return (
     <div >
-      <Router>
 
-        <Header />
+      <Router>
+      <Header />
         <Route path='/login' component={Login} />
         <Route path='/logout' component={Logout} />
         <Route path='/signup' component={SignUp} />
-      </Router>
+        </Router>
 
     </div>
   );
