@@ -6,8 +6,27 @@ import { Link } from 'react-router-dom';
 import { store } from '../Store/Store'
 
 function Header() {
-    const {state } = useContext(store);
-    
+    const { state } = useContext(store);
+
+    const RightHeader = () => {
+        let userLoggedIn = <LinkContainer to="/login">
+            <NavItem>{state.user.name}</NavItem>
+        </LinkContainer>;
+
+        let userNotLoggedIn = <Fragment>  <LinkContainer to="/signup">
+            <NavItem>Signup</NavItem>
+        </LinkContainer>
+            <LinkContainer to="/login">
+                <NavItem>Login</NavItem>
+            </LinkContainer></Fragment>
+
+        let userSection = (state.user.name) ? userLoggedIn : userNotLoggedIn
+        let rightHeader = <Nav pullRight>{userSection} </Nav>
+
+
+        return (rightHeader)
+    }
+
     return (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
@@ -17,21 +36,13 @@ function Header() {
                     <Nav.Link href="#home">Home</Nav.Link>
                     <Nav.Link href="#link">Link</Nav.Link>
                 </Nav>
+                <RightHeader />
 
-          <Nav pullRight>
-            <LinkContainer to="/signup">
-              <NavItem>Signup</NavItem>
-            </LinkContainer>
-            <LinkContainer to="/login">
-              <NavItem>Login</NavItem>
-            </LinkContainer>
-            <LinkContainer to="/login">
-              <NavItem>{state.user.name}</NavItem>
-            </LinkContainer>
-          </Nav>
-        </Navbar.Collapse>
+            </Navbar.Collapse>
         </Navbar>
     )
 }
+
+
 
 export default Header;
